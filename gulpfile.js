@@ -6,29 +6,27 @@ var browserSync = require('browser-sync').create();
 var postcss = require('gulp-postcss');
 
 var cssnext = require('postcss-cssnext');
+var autoprefixer = require('autoprefixer');
 
-/** 
- * file paths stored in variables
- * ex. gulp.src(input) === gulp.src('./css/*.css')
- */
 var input = './src/css/*.css';
 var output = './dest/css';
 
-// Static Server + watching scss/html files
+// browserSync server
 gulp.task('serve', function() {
     browserSync.init({
         server: "./dest"
     });
     gulp.watch(input, ['style']);
-    gulp.watch('./dest/css/main.css').on('change', browserSync.reload);
+    gulp.watch('./dest/**').on('change', browserSync.reload);
 });
 
+// gulp-postcss config
 gulp.task('style', function() {
      var processors = [
         cssnext
     ]
     return gulp.src(input)
          .pipe(postcss(processors))
-        .pipe(gulp.dest(output))
+         .pipe(gulp.dest(output))
 });
 gulp.task('default', ['serve']);

@@ -1,5 +1,9 @@
+/** 
+ * Define Custom Properties with --root 
+ */
+
 :root {
-    --fontSize: 1rem;
+    --fontSize: 16px;
     --fontType: 'Open Sans';
     --bgColor: rebeccapurple;
     --flex-row: {
@@ -13,11 +17,15 @@
 
 body {
     width: 100%;
-    color: #f00f0;
+    color: #f9f9f9;
     font-family: var(--fontType);
     font-size: var(--fontSize);
     background:  var(--bgColor);
 }
+
+/** 
+ * custom properties with @apply 
+ */
 
 .flex-row {
     @apply --flex-row;
@@ -25,6 +33,10 @@ body {
      width: 500px;
     }
 }
+
+/** 
+ * Calculate h1-h4 with calc()
+ */
 
 h1 {
   font-size: calc(var(--fontSize) * 2);
@@ -37,4 +49,17 @@ h3 {
 }
 h4 {
   font-size: calc(var(--fontSize) * 2);
+}
+
+/** 
+ * Custom Media Query 
+ */
+
+@custom-media --small-viewport (max-width: 600px);
+
+@media (--small-viewport) {
+  /* styles for small viewport */
+  .flex-row {
+      flex-direction: column;
+      }
 }
