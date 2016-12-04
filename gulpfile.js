@@ -23,8 +23,9 @@ gulp.task('serve', function() {
 // gulp-postcss config
 gulp.task('style', function() {
      var processors = [
-        cssnext
-    ]
+        cssnext,
+        autoprefixer
+   ]
     return gulp.src(input)
          .pipe(postcss(processors))
          .pipe(gulp.dest(output))
